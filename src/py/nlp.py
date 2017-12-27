@@ -1,6 +1,6 @@
 from collections import OrderedDict
-from spacy.en import English  # NLP with spaCy https://spacy.io
-nlp = English()  # will take some time to load
+import spacy  # NLP with spaCy https://spacy.io
+nlp = spacy.load('en')  # will take some time to load
 
 # Useful properties, summary of the docs from https://spacy.io
 
@@ -123,7 +123,7 @@ def parse(input):
     '''
     parse for multi-sentences; split and apply parse in a list.
     '''
-    doc = nlp(input, tag=False, entity=False)
+    doc = nlp(input)
     return [parse_sentence(sent.text) for sent in doc.sents]
 
 # print(parse("Bob brought the pizza to Alice. I saw the man with glasses."))
